@@ -1,0 +1,1998 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api-documentation for
+    <a
+
+        href="https://github.com/hapijs/joi"
+
+    >joi (v10.2.2)</a>
+</h1>
+<h4>Object schema validation</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi">module joi</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">joi.</span>isJoi</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.alt">
+            function <span class="apidocSignatureSpan">joi.</span>alt
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.alternatives">
+            function <span class="apidocSignatureSpan">joi.</span>alternatives
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any">
+            function <span class="apidocSignatureSpan">joi.</span>any
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.array">
+            function <span class="apidocSignatureSpan">joi.</span>array
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.assert">
+            function <span class="apidocSignatureSpan">joi.</span>assert
+            <span class="apidocSignatureSpan">(value, schema, message)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.attempt">
+            function <span class="apidocSignatureSpan">joi.</span>attempt
+            <span class="apidocSignatureSpan">(value, schema, message)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.binary">
+            function <span class="apidocSignatureSpan">joi.</span>binary
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.bool">
+            function <span class="apidocSignatureSpan">joi.</span>bool
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.boolean">
+            function <span class="apidocSignatureSpan">joi.</span>boolean
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.compile">
+            function <span class="apidocSignatureSpan">joi.</span>compile
+            <span class="apidocSignatureSpan">(schema)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.date">
+            function <span class="apidocSignatureSpan">joi.</span>date
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.describe">
+            function <span class="apidocSignatureSpan">joi.</span>describe
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.extend">
+            function <span class="apidocSignatureSpan">joi.</span>extend
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.func">
+            function <span class="apidocSignatureSpan">joi.</span>func
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.isRef">
+            function <span class="apidocSignatureSpan">joi.</span>isRef
+            <span class="apidocSignatureSpan">(ref)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.lazy">
+            function <span class="apidocSignatureSpan">joi.</span>lazy
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.number">
+            function <span class="apidocSignatureSpan">joi.</span>number
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.object">
+            function <span class="apidocSignatureSpan">joi.</span>object
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.reach">
+            function <span class="apidocSignatureSpan">joi.</span>reach
+            <span class="apidocSignatureSpan">(schema, path)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.ref">
+            function <span class="apidocSignatureSpan">joi.</span>ref
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.string">
+            function <span class="apidocSignatureSpan">joi.</span>string
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.validate">
+            function <span class="apidocSignatureSpan">joi.</span>validate
+            <span class="apidocSignatureSpan">(value)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_description</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_examples</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_flags</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_inner</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_invalids</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_meta</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_notes</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_refs</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_settings</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_tags</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_tests</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_unit</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>_valids</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>any.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>cast</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>errors</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>extensionsSchema</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">joi.</span>_type</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">joi.</span>version</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.any">module joi.any</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any.any">
+            function <span class="apidocSignatureSpan">joi.</span>any
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.any.prototype">module joi.any.prototype</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">joi.any.prototype.</span>isImmutable</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any.prototype.disallow">
+            function <span class="apidocSignatureSpan">joi.any.prototype.</span>disallow
+            <span class="apidocSignatureSpan">(value)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any.prototype.equal">
+            function <span class="apidocSignatureSpan">joi.any.prototype.</span>equal
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any.prototype.exist">
+            function <span class="apidocSignatureSpan">joi.any.prototype.</span>exist
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any.prototype.not">
+            function <span class="apidocSignatureSpan">joi.any.prototype.</span>not
+            <span class="apidocSignatureSpan">(value)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.any.prototype.only">
+            function <span class="apidocSignatureSpan">joi.any.prototype.</span>only
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.cast">module joi.cast</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.cast.ref">
+            function <span class="apidocSignatureSpan">joi.cast.</span>ref
+            <span class="apidocSignatureSpan">(id)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.cast.schema">
+            function <span class="apidocSignatureSpan">joi.cast.</span>schema
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.errors">module joi.errors</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.errors.Err">
+            function <span class="apidocSignatureSpan">joi.errors.</span>Err
+            <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.errors.create">
+            function <span class="apidocSignatureSpan">joi.errors.</span>create
+            <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.errors.process">
+            function <span class="apidocSignatureSpan">joi.errors.</span>process
+            <span class="apidocSignatureSpan">(errors, object)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.ref">module joi.ref</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.ref.create">
+            function <span class="apidocSignatureSpan">joi.ref.</span>create
+            <span class="apidocSignatureSpan">(key, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.ref.isRef">
+            function <span class="apidocSignatureSpan">joi.ref.</span>isRef
+            <span class="apidocSignatureSpan">(ref)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.ref.push">
+            function <span class="apidocSignatureSpan">joi.ref.</span>push
+            <span class="apidocSignatureSpan">(array, ref)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi" id="apidoc.module.joi">module joi</a></h1>
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.alt" id="apidoc.element.joi.alt">
+        function <span class="apidocSignatureSpan">joi.</span>alt
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">alt = function () {
+
+    return arguments.length ? internals.alternatives.try.apply(internals.alternatives, arguments) : internals.alternatives;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.alternatives" id="apidoc.element.joi.alternatives">
+        function <span class="apidocSignatureSpan">joi.</span>alternatives
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">alternatives = function () {
+
+    return arguments.length ? internals.alternatives.try.apply(internals.alternatives, arguments) : internals.alternatives;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any" id="apidoc.element.joi.any">
+        function <span class="apidocSignatureSpan">joi.</span>any
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">any = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.any() does not allow arguments.&#x27;);
+
+    return any;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.array" id="apidoc.element.joi.array">
+        function <span class="apidocSignatureSpan">joi.</span>array
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">array = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.array() does not allow arguments.&#x27;);
+
+    return internals.array;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.assert" id="apidoc.element.joi.assert">
+        function <span class="apidocSignatureSpan">joi.</span>assert
+        <span class="apidocSignatureSpan">(value, schema, message)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">assert = function (value, schema, message) {
+
+    root.attempt(value, schema, message);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+return { errors: errors.length ? errors : this.createError(&#x27;alternatives.base&#x27;, null, state, options) };
+    }
+
+    try(/* schemas */) {
+
+const schemas = Hoek.flatten(Array.prototype.slice.call(arguments));
+Hoek.<span class="apidocCodeKeywordSpan">assert</span>(schemas.length, &#x27;Cannot add other alternatives without at least one
+schema&#x27;);
+
+const obj = this.clone();
+
+for (let i = 0; i &#x3c; schemas.length; ++i) {
+    const cast = Cast.schema(schemas[i]);
+    if (cast._refs.length) {
+        obj._refs = obj._refs.concat(cast._refs);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.attempt" id="apidoc.element.joi.attempt">
+        function <span class="apidocSignatureSpan">joi.</span>attempt
+        <span class="apidocSignatureSpan">(value, schema, message)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">attempt = function (value, schema, message) {
+
+    const result = root.validate(value, schema);
+    const error = result.error;
+    if (error) {
+        if (!message) {
+            error.message = error.annotate();
+            throw error;
+        }
+
+        if (!(message instanceof Error)) {
+            error.message = message + &#x27; &#x27; + error.annotate();
+            throw error;
+        }
+
+        throw message;
+    }
+
+    return result.value;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.binary" id="apidoc.element.joi.binary">
+        function <span class="apidocSignatureSpan">joi.</span>binary
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">binary = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.binary() does not allow arguments.&#x27;);
+
+    return internals.binary;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.bool" id="apidoc.element.joi.bool">
+        function <span class="apidocSignatureSpan">joi.</span>bool
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">bool = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.boolean() does not allow arguments.&#x27;);
+
+    return internals.boolean;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.boolean" id="apidoc.element.joi.boolean">
+        function <span class="apidocSignatureSpan">joi.</span>boolean
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">boolean = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.boolean() does not allow arguments.&#x27;);
+
+    return internals.boolean;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+// Declare internals
+
+const internals = {};
+
+exports.options = Joi.object({
+abortEarly: Joi.<span class="apidocCodeKeywordSpan">boolean</span>(),
+convert: Joi.boolean(),
+allowUnknown: Joi.boolean(),
+skipFunctions: Joi.boolean(),
+stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or(&#x27;arrays&#x27;, &#x27;objects
+&#x27;)],
+language: Joi.object(),
+presence: Joi.string().only(&#x27;required&#x27;, &#x27;optional&#x27;, &#x27;forbidden&#x27;, &#x27;ignore&#x27;),
+raw: Joi.boolean(),
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.compile" id="apidoc.element.joi.compile">
+        function <span class="apidocSignatureSpan">joi.</span>compile
+        <span class="apidocSignatureSpan">(schema)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">compile = function (schema) {
+
+    try {
+        return Cast.schema(schema);
+    }
+    catch (err) {
+        if (err.hasOwnProperty(&#x27;path&#x27;)) {
+            err.message = err.message + &#x27;(&#x27; + err.path + &#x27;)&#x27;;
+        }
+        throw err;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.date" id="apidoc.element.joi.date">
+        function <span class="apidocSignatureSpan">joi.</span>date
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">date = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.date() does not allow arguments.&#x27;);
+
+    return internals.date;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.describe" id="apidoc.element.joi.describe">
+        function <span class="apidocSignatureSpan">joi.</span>describe
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">describe = function () {
+
+    const schema = arguments.length ? root.compile(arguments[0]) : any;
+    return schema.describe();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        const alternatives = [];
+        for (let i = 0; i &#x3c; this._inner.matches.length; ++i) {
+            const item = this._inner.matches[i];
+            if (item.schema) {
+
+// try()
+
+alternatives.push(item.schema.<span class="apidocCodeKeywordSpan">describe</span>());
+            }
+            else {
+
+// when()
+
+const when = {
+    ref: item.ref.toString(),
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.extend" id="apidoc.element.joi.extend">
+        function <span class="apidocSignatureSpan">joi.</span>extend
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">extend = function () {
+
+    const extensions = Hoek.flatten(Array.prototype.slice.call(arguments));
+    Hoek.assert(extensions.length &#x3e; 0, &#x27;You need to provide at least one extension&#x27;);
+
+    this.assert(extensions, root.extensionsSchema);
+
+    const joi = Object.create(this);
+
+    for (let i = 0; i &#x3c; extensions.length; ++i) {
+        const extension = extensions[i];
+        const base = (extension.base || this.any()).clone(); // Cloning because we&#x27;re going to override language afterwards
+        const ctor = base.constructor;
+        const type = class extends ctor { // eslint-disable-line no-loop-func
+
+            constructor() {
+
+                super();
+                if (extension.base) {
+                    Object.assign(this, base);
+                }
+
+                this._type = extension.name;
+
+                if (extension.language) {
+                    this._settings = this._settings || { language: {} };
+                    this._settings.language = Hoek.applyToDefaults(this._settings.language, {
+                        [extension.name]: extension.language
+                    });
+                }
+            }
+
+        };
+
+        if (extension.coerce) {
+            type.prototype._coerce = function (value, state, options) {
+
+                if (ctor.prototype._coerce) {
+                    const baseRet = ctor.prototype._coerce.call(this, value, state, options);
+
+                    if (baseRet.errors) {
+                        return baseRet;
+                    }
+
+                    value = baseRet.value;
+                }
+
+                const ret = extension.coerce.call(this, value, state, options);
+                if (ret instanceof Errors.Err) {
+                    return { value, errors: ret };
+                }
+
+                return { value: ret };
+            };
+        }
+        if (extension.pre) {
+            type.prototype._base = function (value, state, options) {
+
+                if (ctor.prototype._base) {
+                    const baseRet = ctor.prototype._base.call(this, value, state, options);
+
+                    if (baseRet.errors) {
+                        return baseRet;
+                    }
+
+                    value = baseRet.value;
+                }
+
+                const ret = extension.pre.call(this, value, state, options);
+                if (ret instanceof Errors.Err) {
+                    return { value, errors: ret };
+                }
+
+                return { value: ret };
+            };
+        }
+
+        if (extension.rules) {
+            for (let j = 0; j &#x3c; extension.rules.length; ++j) {
+                const rule = extension.rules[j];
+                const ruleArgs = rule.params ?
+                    (rule.params instanceof Any ? rule.params._inner.children.map((k) =&#x3e; k.key) : Object.keys(rule.params)) :
+                    [];
+                const validateArgs = rule.params ? Cast.schema(rule.params) : null;
+
+                type.prototype[rule.name] = function () { // eslint-disable-line no-loop-func
+
+                    if (arguments.length &#x3e; ruleArgs.length) {
+                        throw new Error(&#x27;Unexpected number of arguments&#x27;);
+                    }
+
+                    const args = Array.prototype.slice.call(arguments);
+                    let hasRef = false;
+                    let arg = {};
+
+                    for (let k = 0; k &#x3c; ruleArgs.length; ++k) {
+                        arg[ruleArgs[k]] = args[k];
+                        if (!hasRef &#x26;&#x26; Ref.isRef(args[k])) {
+                            hasRef = true;
+                        }
+                    }
+
+                    if (validateArgs) {
+                        arg = joi.attempt(arg, validateArgs);
+                    }
+
+                    let schema;
+                    if (rule.validate) {
+                        const validate = function (value, state, options) {
+
+                            return rule.validate.call(this, arg, value, state, options);
+                        };
+
+                        schema = this._test(rule.name, arg, validate, {
+                            description: rule.desc ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.func" id="apidoc.element.joi.func">
+        function <span class="apidocSignatureSpan">joi.</span>func
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">func = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.func() does not allow arguments.&#x27;);
+
+    return internals.object._func();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.isRef" id="apidoc.element.joi.isRef">
+        function <span class="apidocSignatureSpan">joi.</span>isRef
+        <span class="apidocSignatureSpan">(ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isRef = function (ref) {
+
+    return Ref.isRef(ref);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+return obj;
+    }
+
+    when(ref, options) {
+
+Hoek.assert(Ref.<span class="apidocCodeKeywordSpan">isRef</span>(ref) || typeof ref === &#x27;string&#x27;, &#x27;Invalid reference
+:&#x27;, ref);
+Hoek.assert(options, &#x27;Missing options&#x27;);
+Hoek.assert(typeof options === &#x27;object&#x27;, &#x27;Invalid options&#x27;);
+Hoek.assert(options.hasOwnProperty(&#x27;is&#x27;), &#x27;Missing &#x22;is&#x22; directive&#x27;);
+Hoek.assert(options.then !== undefined || options.otherwise !== undefined, &#x27;options must have at least one of &#x22;then&#x22
+; or &#x22;otherwise&#x22;&#x27;);
+
+const obj = this.clone();
+let is = Cast.schema(options.is);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.lazy" id="apidoc.element.joi.lazy">
+        function <span class="apidocSignatureSpan">joi.</span>lazy
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lazy = function (fn) {
+
+    return Lazy.set(fn);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.number" id="apidoc.element.joi.number">
+        function <span class="apidocSignatureSpan">joi.</span>number
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">number = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.number() does not allow arguments.&#x27;);
+
+    return internals.number;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+```javascript
+var Joi = require(&#x27;joi&#x27;);
+
+var schema = Joi.object().keys({
+    username: Joi.string().alphanum().min(3).max(30).required(),
+    password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+    access_token: [Joi.string(), Joi.<span class="apidocCodeKeywordSpan">number</span>()],
+    birthyear: Joi.number().integer().min(1900).max(2013),
+    email: Joi.string().email()
+}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+
+Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value) { });  // err === null -&#x3e; valid
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.object" id="apidoc.element.joi.object">
+        function <span class="apidocSignatureSpan">joi.</span>object
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">object = function () {
+
+    return arguments.length ? internals.object.keys.apply(internals.object, arguments) : internals.object;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+# Example
+
+```javascript
+var Joi = require(&#x27;joi&#x27;);
+
+var schema = Joi.<span class="apidocCodeKeywordSpan">object</span>().keys({
+    username: Joi.string().alphanum().min(3).max(30).required(),
+    password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+    access_token: [Joi.string(), Joi.number()],
+    birthyear: Joi.number().integer().min(1900).max(2013),
+    email: Joi.string().email()
+}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.reach" id="apidoc.element.joi.reach">
+        function <span class="apidocSignatureSpan">joi.</span>reach
+        <span class="apidocSignatureSpan">(schema, path)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">reach = function (schema, path) {
+
+    Hoek.assert(schema &#x26;&#x26; schema instanceof Any, &#x27;you must provide a joi schema&#x27;);
+    Hoek.assert(typeof path === &#x27;string&#x27;, &#x27;path must be a string&#x27;);
+
+    if (path === &#x27;&#x27;) {
+        return schema;
+    }
+
+    const parts = path.split(&#x27;.&#x27;);
+    const children = schema._inner.children;
+    if (!children) {
+        return;
+    }
+
+    const key = parts[0];
+    for (let i = 0; i &#x3c; children.length; ++i) {
+        const child = children[i];
+        if (child.key === key) {
+            return this.reach(child.schema, path.substr(key.length + 1));
+        }
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+function: new Map(),
+custom: new Map()
+            };
+
+            const compare = settings.comparator || Hoek.deepEqual;
+
+            for (let i = 0; i &#x3c; value.length; ++i) {
+const item = settings.path ? Hoek.<span class="apidocCodeKeywordSpan">reach</span>(value[i], settings.path) : value[i];
+const records = settings.comparator ? found.custom : found[typeof item];
+
+// All available types are supported, so it&#x27;s not possible to reach 100% coverage without ignoring this line.
+// I still want to keep the test for future js versions with new types (eg. Symbol).
+if (/* $lab:coverage:off$ */ records /* $lab:coverage:on$ */) {
+    if (records instanceof Map) {
+        const entries = records.entries();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.ref" id="apidoc.element.joi.ref">
+        function <span class="apidocSignatureSpan">joi.</span>ref
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ref = function () {
+
+    return Ref.create.apply(null, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        const il = this._inner.matches.length;
+        const baseType = this._settings &#x26;&#x26; this._settings.baseType;
+
+        for (let i = 0; i &#x3c; il; ++i) {
+            const item = this._inner.matches[i];
+            const schema = item.schema;
+            if (!schema) {
+const failed = item.is._validate(item.<span class="apidocCodeKeywordSpan">ref</span>(state.reference || state.parent, options),
+null, options, state.parent).errors;
+
+if (failed) {
+    if (item.otherwise) {
+        return item.otherwise._validate(value, state, options);
+    }
+    else if (baseType &#x26;&#x26; i  === (il - 1)) {
+        return baseType._validate(value, state, options);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.string" id="apidoc.element.joi.string">
+        function <span class="apidocSignatureSpan">joi.</span>string
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">string = function () {
+
+    Hoek.assert(arguments.length === 0, &#x27;Joi.string() does not allow arguments.&#x27;);
+
+    return internals.string;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+# Example
+
+```javascript
+var Joi = require(&#x27;joi&#x27;);
+
+var schema = Joi.object().keys({
+    username: Joi.<span class="apidocCodeKeywordSpan">string</span>().alphanum().min(3).max(30).required(),
+    password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+    access_token: [Joi.string(), Joi.number()],
+    birthyear: Joi.number().integer().min(1900).max(2013),
+    email: Joi.string().email()
+}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+
+Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value) { });  // err === null -&#x3e; valid
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.validate" id="apidoc.element.joi.validate">
+        function <span class="apidocSignatureSpan">joi.</span>validate
+        <span class="apidocSignatureSpan">(value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validate = function (value) {
+
+    const last = arguments[arguments.length - 1];
+    const callback = typeof last === &#x27;function&#x27; ? last : null;
+
+    const count = arguments.length - (callback ? 1 : 0);
+    if (count === 1) {
+        return any.validate(value, callback);
+    }
+
+    const options = count === 3 ? arguments[2] : {};
+    const schema = root.compile(arguments[1]);
+
+    return schema._validateWithOptions(value, options, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+username: Joi.string().alphanum().min(3).max(30).required(),
+password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+access_token: [Joi.string(), Joi.number()],
+birthyear: Joi.number().integer().min(1900).max(2013),
+email: Joi.string().email()
+}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+
+Joi.<span class="apidocCodeKeywordSpan">validate</span>({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value
+) { });  // err === null -&#x3e; valid
+```
+
+The above schema defines the following constraints:
+* `username`
+* a required string
+* must contain only alphanumeric characters
+* at least 3 characters long but no more than 30
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.any" id="apidoc.module.joi.any">module joi.any</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any.any" id="apidoc.element.joi.any.any">
+        function <span class="apidocSignatureSpan">joi.</span>any
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class {
+
+    constructor() {
+
+        Cast = Cast || require(&#x27;./cast&#x27;);
+
+        this.isJoi = true;
+        this._type = &#x27;any&#x27;;
+        this._settings = null;
+        this._valids = new internals.Set();
+        this._invalids = new internals.Set();
+        this._tests = [];
+        this._refs = [];
+        this._flags = {
+<span class="apidocCodeCommentSpan">            /*
+             presence: &#x27;optional&#x27;,                   // optional, required, forbidden, ignore
+             allowOnly: false,
+             allowUnknown: undefined,
+             default: undefined,
+             forbidden: false,
+             encoding: undefined,
+             insensitive: false,
+             trim: false,
+             case: undefined,                        // upper, lower
+             empty: undefined,
+             func: false,
+             raw: false
+             */
+</span>        };
+
+        this._description = null;
+        this._unit = null;
+        this._notes = [];
+        this._tags = [];
+        this._examples = [];
+        this._meta = [];
+
+        this._inner = {};                           // Hash of arrays of immutable objects
+    }
+
+    createError(type, context, state, options) {
+
+        return Errors.create(type, context, state, options, this._flags);
+    }
+
+    checkOptions(options) {
+
+        const Schemas = require(&#x27;./schemas&#x27;);
+        const result = Schemas.options.validate(options);
+        if (result.error) {
+            throw new Error(result.error.details[0].message);
+        }
+    }
+
+    clone() {
+
+        const obj = Object.create(Object.getPrototypeOf(this));
+
+        obj.isJoi = true;
+        obj._type = this._type;
+        obj._settings = internals.concatSettings(this._settings);
+        obj._valids = Hoek.clone(this._valids);
+        obj._invalids = Hoek.clone(this._invalids);
+        obj._tests = this._tests.slice();
+        obj._refs = this._refs.slice();
+        obj._flags = Hoek.clone(this._flags);
+
+        obj._description = this._description;
+        obj._unit = this._unit;
+        obj._notes = this._notes.slice();
+        obj._tags = this._tags.slice();
+        obj._examples = this._examples.slice();
+        obj._meta = this._meta.slice();
+
+        obj._inner = {};
+        const inners = Object.keys(this._inner);
+        for (let i = 0; i &#x3c; inners.length; ++i) {
+            const key = inners[i];
+            obj._inner[key] = this._inner[key] ? this._inner[key].slice() : null;
+        }
+
+        return obj;
+    }
+
+    concat(schema) {
+
+        Hoek.assert(schema instanceof internals.Any, &#x27;Invalid schema object&#x27;);
+        Hoek.assert(this._type === &#x27;any&#x27; || schema._type === &#x27;any&#x27; || schema._type === this._type, &#x27;Cannot merge type&#x27;, this._type
+, &#x27;with another type:&#x27;, schema._type);
+
+        let obj = this.clone();
+
+        if (this._type === &#x27;any&#x27; &#x26;&#x26; schema._type !== &#x27;any&#x27;) {
+
+            // Reset values as if we were &#x22;this&#x22;
+            const tmpObj = schema.clone();
+            const keysToRestore = [&#x27;_settings&#x27;, &#x27;_valids&#x27;, &#x27;_invalids&#x27;, &#x27;_tests&#x27;, &#x27;_refs&#x27;, &#x27;_flags&#x27;, &#x27;_description&#x27;, &#x27;_unit&#x27;,
+                &#x27;_notes&#x27;, &#x27;_tags&#x27;, &#x27;_examples&#x27;, &#x27;_meta&#x27;, &#x27;_inner&#x27;];
+
+            for (let i = 0; i &#x3c; keysToRestore.length; ++i) {
+                tmpObj[keysToRestore[i]] = obj[keysToRestore[i]];
+            }
+
+            obj = tmpObj;
+        }
+
+        obj._settings = obj._settings ? internals.concatSettings(obj._settings, schema._settings) : schema._settings;
+        obj._valids.merge(schema._valids, schema._invalids);
+        obj._invalids.merge(schema._invalids, schema._valids);
+        obj._tests = obj._tests.concat(schema._tests);
+        obj._refs = obj._refs.concat(schema._refs);
+        Hoek.merge(obj._flags, schema._flags);
+
+        obj._description = schema._description || obj._description;
+        obj._unit = schema._unit || obj._unit;
+        obj._notes = obj._notes.concat(schema._notes);
+        obj._tags = obj._tags.concat(schema._tags);
+        obj._examples = obj._examples.concat(schema._examples);
+        obj._meta = obj._meta.concat(schema._meta);
+
+        const inners = Object.keys(schema._inner);
+        const isObject = obj._type === &#x27;o ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.any.prototype" id="apidoc.module.joi.any.prototype">module joi.any.prototype</a></h1>
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any.prototype.disallow" id="apidoc.element.joi.any.prototype.disallow">
+        function <span class="apidocSignatureSpan">joi.any.prototype.</span>disallow
+        <span class="apidocSignatureSpan">(value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">invalid(value) {
+
+    const obj = this.clone();
+    const values = Hoek.flatten(Array.prototype.slice.call(arguments));
+    for (let i = 0; i &#x3c; values.length; ++i) {
+        value = values[i];
+
+        Hoek.assert(value !== undefined, &#x27;Cannot call allow/valid/invalid with undefined&#x27;);
+        obj._valids.remove(value);
+        obj._invalids.add(value, this._refs);
+    }
+
+    return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any.prototype.equal" id="apidoc.element.joi.any.prototype.equal">
+        function <span class="apidocSignatureSpan">joi.any.prototype.</span>equal
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">valid() {
+
+    const obj = this.allow.apply(this, arguments);
+    obj._flags.allowOnly = true;
+    return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any.prototype.exist" id="apidoc.element.joi.any.prototype.exist">
+        function <span class="apidocSignatureSpan">joi.any.prototype.</span>exist
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">required() {
+
+    const obj = this.clone();
+    obj._flags.presence = &#x27;required&#x27;;
+    return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any.prototype.not" id="apidoc.element.joi.any.prototype.not">
+        function <span class="apidocSignatureSpan">joi.any.prototype.</span>not
+        <span class="apidocSignatureSpan">(value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">invalid(value) {
+
+    const obj = this.clone();
+    const values = Hoek.flatten(Array.prototype.slice.call(arguments));
+    for (let i = 0; i &#x3c; values.length; ++i) {
+        value = values[i];
+
+        Hoek.assert(value !== undefined, &#x27;Cannot call allow/valid/invalid with undefined&#x27;);
+        obj._valids.remove(value);
+        obj._invalids.add(value, this._refs);
+    }
+
+    return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.any.prototype.only" id="apidoc.element.joi.any.prototype.only">
+        function <span class="apidocSignatureSpan">joi.any.prototype.</span>only
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">valid() {
+
+    const obj = this.allow.apply(this, arguments);
+    obj._flags.allowOnly = true;
+    return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+exports.options = Joi.object({
+    abortEarly: Joi.boolean(),
+    convert: Joi.boolean(),
+    allowUnknown: Joi.boolean(),
+    skipFunctions: Joi.boolean(),
+    stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or(&#x27;arrays&#x27;, &#x27;objects
+&#x27;)],
+    language: Joi.object(),
+    presence: Joi.string().<span class="apidocCodeKeywordSpan">only</span>(&#x27;required&#x27;, &#x27;optional&#x27;, &#x27;forbidden
+&#x27;, &#x27;ignore&#x27;),
+    raw: Joi.boolean(),
+    context: Joi.object(),
+    strip: Joi.boolean(),
+    noDefaults: Joi.boolean()
+}).strict();
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.cast" id="apidoc.module.joi.cast">module joi.cast</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.joi.cast.ref" id="apidoc.element.joi.cast.ref">
+        function <span class="apidocSignatureSpan">joi.cast.</span>ref
+        <span class="apidocSignatureSpan">(id)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ref = function (id) {
+
+    return Ref.isRef(id) ? id : Ref.create(id);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        const il = this._inner.matches.length;
+        const baseType = this._settings &#x26;&#x26; this._settings.baseType;
+
+        for (let i = 0; i &#x3c; il; ++i) {
+            const item = this._inner.matches[i];
+            const schema = item.schema;
+            if (!schema) {
+const failed = item.is._validate(item.<span class="apidocCodeKeywordSpan">ref</span>(state.reference || state.parent, options),
+null, options, state.parent).errors;
+
+if (failed) {
+    if (item.otherwise) {
+        return item.otherwise._validate(value, state, options);
+    }
+    else if (baseType &#x26;&#x26; i  === (il - 1)) {
+        return baseType._validate(value, state, options);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.cast.schema" id="apidoc.element.joi.cast.schema">
+        function <span class="apidocSignatureSpan">joi.cast.</span>schema
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">schema = function (config) {
+
+    internals.any = internals.any || new (require(&#x27;./any&#x27;))();
+    internals.alt = internals.alt || require(&#x27;./alternatives&#x27;);
+    internals.object = internals.object || require(&#x27;./object&#x27;);
+
+    if (config !== undefined &#x26;&#x26; config !== null &#x26;&#x26; typeof config === &#x27;object&#x27;) {
+
+        if (config.isJoi) {
+            return config;
+        }
+
+        if (Array.isArray(config)) {
+            return internals.alt.try(config);
+        }
+
+        if (config instanceof RegExp) {
+            return internals.string.regex(config);
+        }
+
+        if (config instanceof Date) {
+            return internals.date.valid(config);
+        }
+
+        return internals.object.keys(config);
+    }
+
+    if (typeof config === &#x27;string&#x27;) {
+        return internals.string.valid(config);
+    }
+
+    if (typeof config === &#x27;number&#x27;) {
+        return internals.number.valid(config);
+    }
+
+    if (typeof config === &#x27;boolean&#x27;) {
+        return internals.boolean.valid(config);
+    }
+
+    if (Ref.isRef(config)) {
+        return internals.any.valid(config);
+    }
+
+    Hoek.assert(config === null, &#x27;Invalid schema content:&#x27;, config);
+
+    return internals.any.valid(null);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+const schemas = Hoek.flatten(Array.prototype.slice.call(arguments));
+Hoek.assert(schemas.length, &#x27;Cannot add other alternatives without at least one schema&#x27;);
+
+const obj = this.clone();
+
+for (let i = 0; i &#x3c; schemas.length; ++i) {
+    const cast = Cast.<span class="apidocCodeKeywordSpan">schema</span>(schemas[i]);
+    if (cast._refs.length) {
+        obj._refs = obj._refs.concat(cast._refs);
+    }
+    obj._inner.matches.push({ schema: cast });
+}
+
+return obj;
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.errors" id="apidoc.module.joi.errors">module joi.errors</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.joi.errors.Err" id="apidoc.element.joi.errors.Err">
+        function <span class="apidocSignatureSpan">joi.errors.</span>Err
+        <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class {
+
+    constructor(type, context, state, options, flags) {
+
+        this.isJoi = true;
+        this.type = type;
+        this.context = context || {};
+        this.context.key = state.key;
+        this.path = state.path;
+        this.options = options;
+        this.flags = flags;
+    }
+
+    toString() {
+
+        const localized = this.options.language;
+
+        if (this.flags.label) {
+            this.context.key = this.flags.label;
+        }
+        else if (this.context.key === &#x27;&#x27; || this.context.key === null) {
+            this.context.key = localized.root || Language.errors.root;
+        }
+
+        let format = Hoek.reach(localized, this.type) || Hoek.reach(Language.errors, this.type);
+        const hasKey = /\{\{\!?key\}\}/.test(format);
+        const skipKey = format.length &#x3e; 2 &#x26;&#x26; format[0] === &#x27;!&#x27; &#x26;&#x26; format[1] === &#x27;!&#x27;;
+
+        if (skipKey) {
+            format = format.slice(2);
+        }
+
+        if (!hasKey &#x26;&#x26; !skipKey) {
+            format = (Hoek.reach(localized, &#x27;key&#x27;) || Hoek.reach(Language.errors, &#x27;key&#x27;)) + format;
+        }
+
+        let wrapArrays = Hoek.reach(localized, &#x27;messages.wrapArrays&#x27;);
+        if (typeof wrapArrays !== &#x27;boolean&#x27;) {
+            wrapArrays = Language.errors.messages.wrapArrays;
+        }
+
+        return format.replace(/\{\{(\!?)([^}]+)\}\}/g, ($0, isSecure, name) =&#x3e; {
+
+            const value = Hoek.reach(this.context, name);
+            const normalized = internals.stringify(value, wrapArrays);
+            return (isSecure ? Hoek.escapeHtml(normalized) : normalized);
+        });
+    }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+};
+
+
+exports.create = function (type, context, state, options, flags) {
+
+return new exports.<span class="apidocCodeKeywordSpan">Err</span>(type, context, state, options, flags);
+};
+
+
+exports.process = function (errors, object) {
+
+if (!errors || !errors.length) {
+    return null;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.errors.create" id="apidoc.element.joi.errors.create">
+        function <span class="apidocSignatureSpan">joi.errors.</span>create
+        <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">create = function (type, context, state, options, flags) {
+
+    return new exports.Err(type, context, state, options, flags);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this._meta = [];
+
+this._inner = {};                           // Hash of arrays of immutable objects
+    }
+
+    createError(type, context, state, options) {
+
+return Errors.<span class="apidocCodeKeywordSpan">create</span>(type, context, state, options, this._flags);
+    }
+
+    checkOptions(options) {
+
+const Schemas = require(&#x27;./schemas&#x27;);
+const result = Schemas.options.validate(options);
+if (result.error) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.errors.process" id="apidoc.element.joi.errors.process">
+        function <span class="apidocSignatureSpan">joi.errors.</span>process
+        <span class="apidocSignatureSpan">(errors, object)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">process = function (errors, object) {
+
+    if (!errors || !errors.length) {
+        return null;
+    }
+
+    // Construct error
+
+    let message = &#x27;&#x27;;
+    const details = [];
+
+    const processErrors = function (localErrors, parent) {
+
+        for (let i = 0; i &#x3c; localErrors.length; ++i) {
+            const item = localErrors[i];
+
+            if (item.flags.error) {
+                return item.flags.error;
+            }
+
+            let itemMessage;
+            if (parent === undefined) {
+                itemMessage = item.toString();
+                message = message + (message ? &#x27;. &#x27; : &#x27;&#x27;) + itemMessage;
+            }
+
+            // Do not push intermediate errors, we&#x27;re only interested in leafs
+
+            if (item.context.reason &#x26;&#x26; item.context.reason.length) {
+                const override = processErrors(item.context.reason, item.path);
+                if (override) {
+                    return override;
+                }
+            }
+            else {
+                details.push({
+                    message: itemMessage || item.toString(),
+                    path: internals.getPath(item),
+                    type: item.type,
+                    context: item.context
+                });
+            }
+        }
+    };
+
+    const override = processErrors(errors);
+    if (override) {
+        return override;
+    }
+
+    const error = new Error(message);
+    error.isJoi = true;
+    error.name = &#x27;ValidationError&#x27;;
+    error.details = details;
+    error._object = object;
+    error.annotate = internals.annotate;
+    return error;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return obj;
+}
+
+example(value) {
+
+    Hoek.assert(arguments.length, &#x27;Missing example&#x27;);
+    const result = this._validate(value, null, internals.defaults);
+    Hoek.assert(!result.errors, &#x27;Bad example:&#x27;, result.errors &#x26;&#x26; Errors.<span class="apidocCodeKeywordSpan">
+process</span>(result.errors, value));
+
+    const obj = this.clone();
+    obj._examples.push(value);
+    return obj;
+}
+
+unit(name) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.ref" id="apidoc.module.joi.ref">module joi.ref</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.joi.ref.create" id="apidoc.element.joi.ref.create">
+        function <span class="apidocSignatureSpan">joi.ref.</span>create
+        <span class="apidocSignatureSpan">(key, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">create = function (key, options) {
+
+    Hoek.assert(typeof key === &#x27;string&#x27;, &#x27;Invalid reference key:&#x27;, key);
+
+    const settings = Hoek.clone(options);         // options can be reused and modified
+
+    const ref = function (value, validationOptions) {
+
+        return Hoek.reach(ref.isContext ? validationOptions.context : value, ref.key, settings);
+    };
+
+    ref.isContext = (key[0] === ((settings &#x26;&#x26; settings.contextPrefix) || &#x27;$&#x27;));
+    ref.key = (ref.isContext ? key.slice(1) : key);
+    ref.path = ref.key.split((settings &#x26;&#x26; settings.separator) || &#x27;.&#x27;);
+    ref.depth = ref.path.length;
+    ref.root = ref.path[0];
+    ref.isJoi = true;
+
+    ref.toString = function () {
+
+        return (ref.isContext ? &#x27;context:&#x27; : &#x27;ref:&#x27;) + ref.key;
+    };
+
+    return ref;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+this._meta = [];
+
+this._inner = {};                           // Hash of arrays of immutable objects
+    }
+
+    createError(type, context, state, options) {
+
+return Errors.<span class="apidocCodeKeywordSpan">create</span>(type, context, state, options, this._flags);
+    }
+
+    checkOptions(options) {
+
+const Schemas = require(&#x27;./schemas&#x27;);
+const result = Schemas.options.validate(options);
+if (result.error) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.ref.isRef" id="apidoc.element.joi.ref.isRef">
+        function <span class="apidocSignatureSpan">joi.ref.</span>isRef
+        <span class="apidocSignatureSpan">(ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isRef = function (ref) {
+
+    return typeof ref === &#x27;function&#x27; &#x26;&#x26; ref.isJoi;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+return obj;
+    }
+
+    when(ref, options) {
+
+Hoek.assert(Ref.<span class="apidocCodeKeywordSpan">isRef</span>(ref) || typeof ref === &#x27;string&#x27;, &#x27;Invalid reference
+:&#x27;, ref);
+Hoek.assert(options, &#x27;Missing options&#x27;);
+Hoek.assert(typeof options === &#x27;object&#x27;, &#x27;Invalid options&#x27;);
+Hoek.assert(options.hasOwnProperty(&#x27;is&#x27;), &#x27;Missing &#x22;is&#x22; directive&#x27;);
+Hoek.assert(options.then !== undefined || options.otherwise !== undefined, &#x27;options must have at least one of &#x22;then&#x22
+; or &#x22;otherwise&#x22;&#x27;);
+
+const obj = this.clone();
+let is = Cast.schema(options.is);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.joi.ref.push" id="apidoc.element.joi.ref.push">
+        function <span class="apidocSignatureSpan">joi.ref.</span>push
+        <span class="apidocSignatureSpan">(array, ref)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">push = function (array, ref) {
+
+    if (exports.isRef(ref) &#x26;&#x26;
+        !ref.isContext) {
+
+        array.push(ref.root);
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    const obj = this.clone();
+
+    for (let i = 0; i &#x3c; schemas.length; ++i) {
+        const cast = Cast.schema(schemas[i]);
+        if (cast._refs.length) {
+            obj._refs = obj._refs.concat(cast._refs);
+        }
+        obj._inner.matches.<span class="apidocCodeKeywordSpan">push</span>({ schema: cast });
+    }
+
+    return obj;
+}
+
+when(ref, options) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
