@@ -46,12 +46,12 @@
     font-weight: bold;
 }
 </style>
-<h1>api-documentation for
+<h1>api documentation for
     <a
 
         href="https://github.com/hapijs/joi"
 
-    >joi (v10.2.2)</a>
+    >joi (v10.3.0)</a>
 </h1>
 <h4>Object schema validation</h4>
 <div class="apidocSectionDiv"><a
@@ -358,6 +358,12 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>errors</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>extensionSchema</span>
 
         </li>
 
@@ -834,10 +840,18 @@ const when = {
 
     this.assert(extensions, root.extensionsSchema);
 
-    const joi = Object.create(this);
+    const joi = Object.create(this.any());
+    Object.assign(joi, this);
 
     for (let i = 0; i &#x3c; extensions.length; ++i) {
-        const extension = extensions[i];
+        let extension = extensions[i];
+
+        if (typeof extension === &#x27;function&#x27;) {
+            extension = extension(joi);
+        }
+
+        this.assert(extension, root.extensionSchema);
+
         const base = (extension.base || this.any()).clone(); // Cloning because we&#x27;re going to override language afterwards
         const ctor = base.constructor;
         const type = class extends ctor { // eslint-disable-line no-loop-func
@@ -937,11 +951,7 @@ const when = {
                     if (rule.validate) {
                         const validate = function (value, state, options) {
 
-                            return rule.validate.call(this, arg, value, state, options);
-                        };
-
-                        schema = this._test(rule.name, arg, validate, {
-                            description: rule.desc ...</pre></li>
+                            return rule.validate.ca ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1031,9 +1041,9 @@ let is = Cast.schema(options.is);
     <li>example usage<pre class="apidocCodePre">...
 
 ```javascript
-var Joi = require(&#x27;joi&#x27;);
+const Joi = require(&#x27;joi&#x27;);
 
-var schema = Joi.object().keys({
+const schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
     access_token: [Joi.string(), Joi.<span class="apidocCodeKeywordSpan">number</span>()],
@@ -1041,8 +1051,9 @@ var schema = Joi.object().keys({
     email: Joi.string().email()
 }).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
 
-Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value) { });  // err === null -&#x3e; valid
-```
+// Return result.
+const result = Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema);
+// result.error === null -&#x3e; valid
 ...</pre></li>
     </ul>
 
@@ -1065,9 +1076,9 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 # Example
 
 ```javascript
-var Joi = require(&#x27;joi&#x27;);
+const Joi = require(&#x27;joi&#x27;);
 
-var schema = Joi.<span class="apidocCodeKeywordSpan">object</span>().keys({
+const schema = Joi.<span class="apidocCodeKeywordSpan">object</span>().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
     access_token: [Joi.string(), Joi.number()],
@@ -1181,9 +1192,9 @@ if (failed) {
 # Example
 
 ```javascript
-var Joi = require(&#x27;joi&#x27;);
+const Joi = require(&#x27;joi&#x27;);
 
-var schema = Joi.object().keys({
+const schema = Joi.object().keys({
     username: Joi.<span class="apidocCodeKeywordSpan">string</span>().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
     access_token: [Joi.string(), Joi.number()],
@@ -1191,7 +1202,7 @@ var schema = Joi.object().keys({
     email: Joi.string().email()
 }).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
 
-Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value) { });  // err === null -&#x3e; valid
+// Return result.
 ...</pre></li>
     </ul>
 
@@ -1220,24 +1231,24 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
     return schema._validateWithOptions(value, options, callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-username: Joi.string().alphanum().min(3).max(30).required(),
-password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
-access_token: [Joi.string(), Joi.number()],
-birthyear: Joi.number().integer().min(1900).max(2013),
-email: Joi.string().email()
+    password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/),
+    access_token: [Joi.string(), Joi.number()],
+    birthyear: Joi.number().integer().min(1900).max(2013),
+    email: Joi.string().email()
 }).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
 
-Joi.<span class="apidocCodeKeywordSpan">validate</span>({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value
-) { });  // err === null -&#x3e; valid
-```
+// Return result.
+const result = Joi.<span class="apidocCodeKeywordSpan">validate</span>({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema);
+// result.error === null -&#x3e; valid
 
-The above schema defines the following constraints:
-* `username`
-* a required string
-* must contain only alphanumeric characters
-* at least 3 characters long but no more than 30
+// You can also pass a callback which will be called synchronously with the validation result.
+Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value) { });  // err === null -&#x3e; valid
+
+```
 ...</pre></li>
     </ul>
+
+
 
 
 
@@ -1477,6 +1488,10 @@ The above schema defines the following constraints:
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">required() {
+
+    if (this._flags.presence === &#x27;required&#x27;) {
+        return this;
+    }
 
     const obj = this.clone();
     obj._flags.presence = &#x27;required&#x27;;
