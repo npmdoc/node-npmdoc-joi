@@ -51,7 +51,7 @@
 
         href="https://github.com/hapijs/joi"
 
-    >joi (v10.3.0)</a>
+    >joi (v10.4.1)</a>
 </h1>
 <h4>Object schema validation</h4>
 <div class="apidocSectionDiv"><a
@@ -483,7 +483,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.joi.errors.Err">
             function <span class="apidocSignatureSpan">joi.errors.</span>Err
-            <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+            <span class="apidocSignatureSpan">(type, context, state, options, flags, message, template)</span>
             </a>
 
         </li>
@@ -492,7 +492,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.joi.errors.create">
             function <span class="apidocSignatureSpan">joi.errors.</span>create
-            <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+            <span class="apidocSignatureSpan">(type, context, state, options, flags, message, template)</span>
             </a>
 
         </li>
@@ -628,7 +628,7 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-return { errors: errors.length ? errors : this.createError(&#x27;alternatives.base&#x27;, null, state, options) };
+return { errors: this.createError(&#x27;alternatives.base&#x27;, null, state, options) };
     }
 
     try(/* schemas */) {
@@ -661,12 +661,16 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
     const error = result.error;
     if (error) {
         if (!message) {
-            error.message = error.annotate();
+            if (typeof error.annotate === &#x27;function&#x27;) {
+                error.message = error.annotate();
+            }
             throw error;
         }
 
         if (!(message instanceof Error)) {
-            error.message = message + &#x27; &#x27; + error.annotate();
+            if (typeof error.annotate === &#x27;function&#x27;) {
+                error.message = `${message} ${error.annotate()}`;
+            }
             throw error;
         }
 
@@ -1347,6 +1351,11 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
         return Errors.create(type, context, state, options, this._flags);
     }
 
+    createOverrideError(type, context, state, options, message, template) {
+
+        return Errors.create(type, context, state, options, this._flags, message, template);
+    }
+
     checkOptions(options) {
 
         const Schemas = require(&#x27;./schemas&#x27;);
@@ -1419,11 +1428,7 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
         obj._unit = schema._unit || obj._unit;
         obj._notes = obj._notes.concat(schema._notes);
         obj._tags = obj._tags.concat(schema._tags);
-        obj._examples = obj._examples.concat(schema._examples);
-        obj._meta = obj._meta.concat(schema._meta);
-
-        const inners = Object.keys(schema._inner);
-        const isObject = obj._type === &#x27;o ...</pre></li>
+        obj._examples = obj._exa ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1683,13 +1688,13 @@ return obj;
     <h2>
         <a href="#apidoc.element.joi.errors.Err" id="apidoc.element.joi.errors.Err">
         function <span class="apidocSignatureSpan">joi.errors.</span>Err
-        <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+        <span class="apidocSignatureSpan">(type, context, state, options, flags, message, template)</span>
         </a>
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">class {
 
-    constructor(type, context, state, options, flags) {
+    constructor(type, context, state, options, flags, message, template) {
 
         this.isJoi = true;
         this.type = type;
@@ -1698,9 +1703,21 @@ return obj;
         this.path = state.path;
         this.options = options;
         this.flags = flags;
+        this.message = message;
+        this.template = template;
     }
 
     toString() {
+
+        if (this.message) {
+            return this.message;
+        }
+
+        let format;
+
+        if (this.template) {
+            format = this.template;
+        }
 
         const localized = this.options.language;
 
@@ -1711,7 +1728,21 @@ return obj;
             this.context.key = localized.root || Language.errors.root;
         }
 
-        let format = Hoek.reach(localized, this.type) || Hoek.reach(Language.errors, this.type);
+        format = format || Hoek.reach(localized, this.type) || Hoek.reach(Language.errors, this.type);
+
+        let wrapArrays = Hoek.reach(localized, &#x27;messages.wrapArrays&#x27;);
+        if (typeof wrapArrays !== &#x27;boolean&#x27;) {
+            wrapArrays = Language.errors.messages.wrapArrays;
+        }
+
+        if (format === null) {
+            const childrenString = internals.stringify(this.context.reason, wrapArrays);
+            if (wrapArrays) {
+                return childrenString.slice(1, -1);
+            }
+            return childrenString;
+        }
+
         const hasKey = /\{\{\!?key\}\}/.test(format);
         const skipKey = format.length &#x3e; 2 &#x26;&#x26; format[0] === &#x27;!&#x27; &#x26;&#x26; format[1] === &#x27;!&#x27;;
 
@@ -1721,11 +1752,6 @@ return obj;
 
         if (!hasKey &#x26;&#x26; !skipKey) {
             format = (Hoek.reach(localized, &#x27;key&#x27;) || Hoek.reach(Language.errors, &#x27;key&#x27;)) + format;
-        }
-
-        let wrapArrays = Hoek.reach(localized, &#x27;messages.wrapArrays&#x27;);
-        if (typeof wrapArrays !== &#x27;boolean&#x27;) {
-            wrapArrays = Language.errors.messages.wrapArrays;
         }
 
         return format.replace(/\{\{(\!?)([^}]+)\}\}/g, ($0, isSecure, name) =&#x3e; {
@@ -1743,9 +1769,9 @@ return obj;
 };
 
 
-exports.create = function (type, context, state, options, flags) {
+exports.create = function (type, context, state, options, flags, message, template) {
 
-return new exports.<span class="apidocCodeKeywordSpan">Err</span>(type, context, state, options, flags);
+return new exports.<span class="apidocCodeKeywordSpan">Err</span>(type, context, state, options, flags, message, template);
 };
 
 
@@ -1761,30 +1787,29 @@ if (!errors || !errors.length) {
     <h2>
         <a href="#apidoc.element.joi.errors.create" id="apidoc.element.joi.errors.create">
         function <span class="apidocSignatureSpan">joi.errors.</span>create
-        <span class="apidocSignatureSpan">(type, context, state, options, flags)</span>
+        <span class="apidocSignatureSpan">(type, context, state, options, flags, message, template)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">create = function (type, context, state, options, flags) {
+    <li>description and source-code<pre class="apidocCodePre">create = function (type, context, state, options, flags, message, template) {
 
-    return new exports.Err(type, context, state, options, flags);
+    return new exports.Err(type, context, state, options, flags, message, template);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-this._meta = [];
+    this._meta = [];
 
-this._inner = {};                           // Hash of arrays of immutable objects
-    }
+    this._inner = {};                           // Hash of arrays of immutable objects
+}
 
-    createError(type, context, state, options) {
+createError(type, context, state, options) {
 
-return Errors.<span class="apidocCodeKeywordSpan">create</span>(type, context, state, options, this._flags);
-    }
+    return Errors.<span class="apidocCodeKeywordSpan">create</span>(type, context, state, options, this._flags);
+}
 
-    checkOptions(options) {
+createOverrideError(type, context, state, options, message, template) {
 
-const Schemas = require(&#x27;./schemas&#x27;);
-const result = Schemas.options.validate(options);
-if (result.error) {
+    return Errors.create(type, context, state, options, this._flags, message, template);
+}
 ...</pre></li>
     </ul>
 
@@ -1813,7 +1838,11 @@ if (result.error) {
         for (let i = 0; i &#x3c; localErrors.length; ++i) {
             const item = localErrors[i];
 
-            if (item.flags.error) {
+            if (item instanceof Error) {
+                return item;
+            }
+
+            if (item.flags.error &#x26;&#x26; typeof item.flags.error !== &#x27;function&#x27;) {
                 return item.flags.error;
             }
 
@@ -1915,21 +1944,20 @@ unit(name) {
     return ref;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-this._meta = [];
+    this._meta = [];
 
-this._inner = {};                           // Hash of arrays of immutable objects
-    }
+    this._inner = {};                           // Hash of arrays of immutable objects
+}
 
-    createError(type, context, state, options) {
+createError(type, context, state, options) {
 
-return Errors.<span class="apidocCodeKeywordSpan">create</span>(type, context, state, options, this._flags);
-    }
+    return Errors.<span class="apidocCodeKeywordSpan">create</span>(type, context, state, options, this._flags);
+}
 
-    checkOptions(options) {
+createOverrideError(type, context, state, options, message, template) {
 
-const Schemas = require(&#x27;./schemas&#x27;);
-const result = Schemas.options.validate(options);
-if (result.error) {
+    return Errors.create(type, context, state, options, this._flags, message, template);
+}
 ...</pre></li>
     </ul>
 

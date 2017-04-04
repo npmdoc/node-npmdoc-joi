@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/hapijs/joi"
-
-    >joi (v10.4.1)</a>
+    <a href="https://github.com/hapijs/joi">joi (v10.4.1)</a>
 </h1>
 <h4>Object schema validation</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.joi">module joi</a><ol>
 
@@ -588,7 +581,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">any = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.any() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.any() does not allow arguments.');
 
     return any;
 }</pre></li>
@@ -606,7 +599,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">array = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.array() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.array() does not allow arguments.');
 
     return internals.array;
 }</pre></li>
@@ -628,18 +621,18 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-return { errors: this.createError(&#x27;alternatives.base&#x27;, null, state, options) };
+return { errors: this.createError('alternatives.base', null, state, options) };
     }
 
     try(/* schemas */) {
 
 const schemas = Hoek.flatten(Array.prototype.slice.call(arguments));
-Hoek.<span class="apidocCodeKeywordSpan">assert</span>(schemas.length, &#x27;Cannot add other alternatives without at least one
-schema&#x27;);
+Hoek.<span class="apidocCodeKeywordSpan">assert</span>(schemas.length, 'Cannot add other alternatives without at least one
+schema');
 
 const obj = this.clone();
 
-for (let i = 0; i &#x3c; schemas.length; ++i) {
+for (let i = 0; i &lt; schemas.length; ++i) {
     const cast = Cast.schema(schemas[i]);
     if (cast._refs.length) {
         obj._refs = obj._refs.concat(cast._refs);
@@ -661,14 +654,14 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
     const error = result.error;
     if (error) {
         if (!message) {
-            if (typeof error.annotate === &#x27;function&#x27;) {
+            if (typeof error.annotate === 'function') {
                 error.message = error.annotate();
             }
             throw error;
         }
 
         if (!(message instanceof Error)) {
-            if (typeof error.annotate === &#x27;function&#x27;) {
+            if (typeof error.annotate === 'function') {
                 error.message = `${message} ${error.annotate()}`;
             }
             throw error;
@@ -693,7 +686,7 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">binary = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.binary() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.binary() does not allow arguments.');
 
     return internals.binary;
 }</pre></li>
@@ -711,7 +704,7 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">bool = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.boolean() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.boolean() does not allow arguments.');
 
     return internals.boolean;
 }</pre></li>
@@ -729,7 +722,7 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">boolean = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.boolean() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.boolean() does not allow arguments.');
 
     return internals.boolean;
 }</pre></li>
@@ -745,10 +738,10 @@ abortEarly: Joi.<span class="apidocCodeKeywordSpan">boolean</span>(),
 convert: Joi.boolean(),
 allowUnknown: Joi.boolean(),
 skipFunctions: Joi.boolean(),
-stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or(&#x27;arrays&#x27;, &#x27;objects
-&#x27;)],
+stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or('arrays', 'objects
+')],
 language: Joi.object(),
-presence: Joi.string().only(&#x27;required&#x27;, &#x27;optional&#x27;, &#x27;forbidden&#x27;, &#x27;ignore&#x27;),
+presence: Joi.string().only('required', 'optional', 'forbidden', 'ignore'),
 raw: Joi.boolean(),
 ...</pre></li>
     </ul>
@@ -768,8 +761,8 @@ raw: Joi.boolean(),
         return Cast.schema(schema);
     }
     catch (err) {
-        if (err.hasOwnProperty(&#x27;path&#x27;)) {
-            err.message = err.message + &#x27;(&#x27; + err.path + &#x27;)&#x27;;
+        if (err.hasOwnProperty('path')) {
+            err.message = err.message + '(' + err.path + ')';
         }
         throw err;
     }
@@ -788,7 +781,7 @@ raw: Joi.boolean(),
     <ul>
     <li>description and source-code<pre class="apidocCodePre">date = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.date() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.date() does not allow arguments.');
 
     return internals.date;
 }</pre></li>
@@ -811,7 +804,7 @@ raw: Joi.boolean(),
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
         const alternatives = [];
-        for (let i = 0; i &#x3c; this._inner.matches.length; ++i) {
+        for (let i = 0; i &lt; this._inner.matches.length; ++i) {
             const item = this._inner.matches[i];
             if (item.schema) {
 
@@ -840,23 +833,23 @@ const when = {
     <li>description and source-code<pre class="apidocCodePre">extend = function () {
 
     const extensions = Hoek.flatten(Array.prototype.slice.call(arguments));
-    Hoek.assert(extensions.length &#x3e; 0, &#x27;You need to provide at least one extension&#x27;);
+    Hoek.assert(extensions.length &gt; 0, 'You need to provide at least one extension');
 
     this.assert(extensions, root.extensionsSchema);
 
     const joi = Object.create(this.any());
     Object.assign(joi, this);
 
-    for (let i = 0; i &#x3c; extensions.length; ++i) {
+    for (let i = 0; i &lt; extensions.length; ++i) {
         let extension = extensions[i];
 
-        if (typeof extension === &#x27;function&#x27;) {
+        if (typeof extension === 'function') {
             extension = extension(joi);
         }
 
         this.assert(extension, root.extensionSchema);
 
-        const base = (extension.base || this.any()).clone(); // Cloning because we&#x27;re going to override language afterwards
+        const base = (extension.base || this.any()).clone(); // Cloning because we're going to override language afterwards
         const ctor = base.constructor;
         const type = class extends ctor { // eslint-disable-line no-loop-func
 
@@ -923,26 +916,26 @@ const when = {
         }
 
         if (extension.rules) {
-            for (let j = 0; j &#x3c; extension.rules.length; ++j) {
+            for (let j = 0; j &lt; extension.rules.length; ++j) {
                 const rule = extension.rules[j];
                 const ruleArgs = rule.params ?
-                    (rule.params instanceof Any ? rule.params._inner.children.map((k) =&#x3e; k.key) : Object.keys(rule.params)) :
+                    (rule.params instanceof Any ? rule.params._inner.children.map((k) =&gt; k.key) : Object.keys(rule.params)) :
                     [];
                 const validateArgs = rule.params ? Cast.schema(rule.params) : null;
 
                 type.prototype[rule.name] = function () { // eslint-disable-line no-loop-func
 
-                    if (arguments.length &#x3e; ruleArgs.length) {
-                        throw new Error(&#x27;Unexpected number of arguments&#x27;);
+                    if (arguments.length &gt; ruleArgs.length) {
+                        throw new Error('Unexpected number of arguments');
                     }
 
                     const args = Array.prototype.slice.call(arguments);
                     let hasRef = false;
                     let arg = {};
 
-                    for (let k = 0; k &#x3c; ruleArgs.length; ++k) {
+                    for (let k = 0; k &lt; ruleArgs.length; ++k) {
                         arg[ruleArgs[k]] = args[k];
-                        if (!hasRef &#x26;&#x26; Ref.isRef(args[k])) {
+                        if (!hasRef &amp;&amp; Ref.isRef(args[k])) {
                             hasRef = true;
                         }
                     }
@@ -970,7 +963,7 @@ const when = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">func = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.func() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.func() does not allow arguments.');
 
     return internals.object._func();
 }</pre></li>
@@ -998,13 +991,13 @@ return obj;
 
     when(ref, options) {
 
-Hoek.assert(Ref.<span class="apidocCodeKeywordSpan">isRef</span>(ref) || typeof ref === &#x27;string&#x27;, &#x27;Invalid reference
-:&#x27;, ref);
-Hoek.assert(options, &#x27;Missing options&#x27;);
-Hoek.assert(typeof options === &#x27;object&#x27;, &#x27;Invalid options&#x27;);
-Hoek.assert(options.hasOwnProperty(&#x27;is&#x27;), &#x27;Missing &#x22;is&#x22; directive&#x27;);
-Hoek.assert(options.then !== undefined || options.otherwise !== undefined, &#x27;options must have at least one of &#x22;then&#x22
-; or &#x22;otherwise&#x22;&#x27;);
+Hoek.assert(Ref.<span class="apidocCodeKeywordSpan">isRef</span>(ref) || typeof ref === 'string', 'Invalid reference
+:', ref);
+Hoek.assert(options, 'Missing options');
+Hoek.assert(typeof options === 'object', 'Invalid options');
+Hoek.assert(options.hasOwnProperty('is'), 'Missing "is" directive');
+Hoek.assert(options.then !== undefined || options.otherwise !== undefined, 'options must have at least one of "then"
+; or "otherwise"');
 
 const obj = this.clone();
 let is = Cast.schema(options.is);
@@ -1038,14 +1031,14 @@ let is = Cast.schema(options.is);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">number = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.number() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.number() does not allow arguments.');
 
     return internals.number;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 ```javascript
-const Joi = require(&#x27;joi&#x27;);
+const Joi = require('joi');
 
 const schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
@@ -1053,11 +1046,11 @@ const schema = Joi.object().keys({
     access_token: [Joi.string(), Joi.<span class="apidocCodeKeywordSpan">number</span>()],
     birthyear: Joi.number().integer().min(1900).max(2013),
     email: Joi.string().email()
-}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+}).with('username', 'birthyear').without('password', 'access_token');
 
 // Return result.
-const result = Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema);
-// result.error === null -&#x3e; valid
+const result = Joi.validate({ username: 'abc', birthyear: 1994 }, schema);
+// result.error === null -&gt; valid
 ...</pre></li>
     </ul>
 
@@ -1080,7 +1073,7 @@ const result = Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, sche
 # Example
 
 ```javascript
-const Joi = require(&#x27;joi&#x27;);
+const Joi = require('joi');
 
 const schema = Joi.<span class="apidocCodeKeywordSpan">object</span>().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
@@ -1088,7 +1081,7 @@ const schema = Joi.<span class="apidocCodeKeywordSpan">object</span>().keys({
     access_token: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
     email: Joi.string().email()
-}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+}).with('username', 'birthyear').without('password', 'access_token');
 ...</pre></li>
     </ul>
 
@@ -1103,21 +1096,21 @@ const schema = Joi.<span class="apidocCodeKeywordSpan">object</span>().keys({
     <ul>
     <li>description and source-code<pre class="apidocCodePre">reach = function (schema, path) {
 
-    Hoek.assert(schema &#x26;&#x26; schema instanceof Any, &#x27;you must provide a joi schema&#x27;);
-    Hoek.assert(typeof path === &#x27;string&#x27;, &#x27;path must be a string&#x27;);
+    Hoek.assert(schema &amp;&amp; schema instanceof Any, 'you must provide a joi schema');
+    Hoek.assert(typeof path === 'string', 'path must be a string');
 
-    if (path === &#x27;&#x27;) {
+    if (path === '') {
         return schema;
     }
 
-    const parts = path.split(&#x27;.&#x27;);
+    const parts = path.split('.');
     const children = schema._inner.children;
     if (!children) {
         return;
     }
 
     const key = parts[0];
-    for (let i = 0; i &#x3c; children.length; ++i) {
+    for (let i = 0; i &lt; children.length; ++i) {
         const child = children[i];
         if (child.key === key) {
             return this.reach(child.schema, path.substr(key.length + 1));
@@ -1131,11 +1124,11 @@ custom: new Map()
 
             const compare = settings.comparator || Hoek.deepEqual;
 
-            for (let i = 0; i &#x3c; value.length; ++i) {
+            for (let i = 0; i &lt; value.length; ++i) {
 const item = settings.path ? Hoek.<span class="apidocCodeKeywordSpan">reach</span>(value[i], settings.path) : value[i];
 const records = settings.comparator ? found.custom : found[typeof item];
 
-// All available types are supported, so it&#x27;s not possible to reach 100% coverage without ignoring this line.
+// All available types are supported, so it's not possible to reach 100% coverage without ignoring this line.
 // I still want to keep the test for future js versions with new types (eg. Symbol).
 if (/* $lab:coverage:off$ */ records /* $lab:coverage:on$ */) {
     if (records instanceof Map) {
@@ -1158,9 +1151,9 @@ if (/* $lab:coverage:off$ */ records /* $lab:coverage:on$ */) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
         const il = this._inner.matches.length;
-        const baseType = this._settings &#x26;&#x26; this._settings.baseType;
+        const baseType = this._settings &amp;&amp; this._settings.baseType;
 
-        for (let i = 0; i &#x3c; il; ++i) {
+        for (let i = 0; i &lt; il; ++i) {
             const item = this._inner.matches[i];
             const schema = item.schema;
             if (!schema) {
@@ -1171,7 +1164,7 @@ if (failed) {
     if (item.otherwise) {
         return item.otherwise._validate(value, state, options);
     }
-    else if (baseType &#x26;&#x26; i  === (il - 1)) {
+    else if (baseType &amp;&amp; i  === (il - 1)) {
         return baseType._validate(value, state, options);
 ...</pre></li>
     </ul>
@@ -1187,7 +1180,7 @@ if (failed) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">string = function () {
 
-    Hoek.assert(arguments.length === 0, &#x27;Joi.string() does not allow arguments.&#x27;);
+    Hoek.assert(arguments.length === 0, 'Joi.string() does not allow arguments.');
 
     return internals.string;
 }</pre></li>
@@ -1196,7 +1189,7 @@ if (failed) {
 # Example
 
 ```javascript
-const Joi = require(&#x27;joi&#x27;);
+const Joi = require('joi');
 
 const schema = Joi.object().keys({
     username: Joi.<span class="apidocCodeKeywordSpan">string</span>().alphanum().min(3).max(30).required(),
@@ -1204,7 +1197,7 @@ const schema = Joi.object().keys({
     access_token: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
     email: Joi.string().email()
-}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+}).with('username', 'birthyear').without('password', 'access_token');
 
 // Return result.
 ...</pre></li>
@@ -1222,7 +1215,7 @@ const schema = Joi.object().keys({
     <li>description and source-code<pre class="apidocCodePre">validate = function (value) {
 
     const last = arguments[arguments.length - 1];
-    const callback = typeof last === &#x27;function&#x27; ? last : null;
+    const callback = typeof last === 'function' ? last : null;
 
     const count = arguments.length - (callback ? 1 : 0);
     if (count === 1) {
@@ -1239,14 +1232,14 @@ const schema = Joi.object().keys({
     access_token: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
     email: Joi.string().email()
-}).with(&#x27;username&#x27;, &#x27;birthyear&#x27;).without(&#x27;password&#x27;, &#x27;access_token&#x27;);
+}).with('username', 'birthyear').without('password', 'access_token');
 
 // Return result.
-const result = Joi.<span class="apidocCodeKeywordSpan">validate</span>({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema);
-// result.error === null -&#x3e; valid
+const result = Joi.<span class="apidocCodeKeywordSpan">validate</span>({ username: 'abc', birthyear: 1994 }, schema);
+// result.error === null -&gt; valid
 
 // You can also pass a callback which will be called synchronously with the validation result.
-Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (err, value) { });  // err === null -&#x3e; valid
+Joi.validate({ username: 'abc', birthyear: 1994 }, schema, function (err, value) { });  // err === null -&gt; valid
 
 ```
 ...</pre></li>
@@ -1310,10 +1303,10 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
     constructor() {
 
-        Cast = Cast || require(&#x27;./cast&#x27;);
+        Cast = Cast || require('./cast');
 
         this.isJoi = true;
-        this._type = &#x27;any&#x27;;
+        this._type = 'any';
         this._settings = null;
         this._valids = new internals.Set();
         this._invalids = new internals.Set();
@@ -1321,7 +1314,7 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
         this._refs = [];
         this._flags = {
 <span class="apidocCodeCommentSpan">            /*
-             presence: &#x27;optional&#x27;,                   // optional, required, forbidden, ignore
+             presence: 'optional',                   // optional, required, forbidden, ignore
              allowOnly: false,
              allowUnknown: undefined,
              default: undefined,
@@ -1358,7 +1351,7 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
     checkOptions(options) {
 
-        const Schemas = require(&#x27;./schemas&#x27;);
+        const Schemas = require('./schemas');
         const result = Schemas.options.validate(options);
         if (result.error) {
             throw new Error(result.error.details[0].message);
@@ -1387,7 +1380,7 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
         obj._inner = {};
         const inners = Object.keys(this._inner);
-        for (let i = 0; i &#x3c; inners.length; ++i) {
+        for (let i = 0; i &lt; inners.length; ++i) {
             const key = inners[i];
             obj._inner[key] = this._inner[key] ? this._inner[key].slice() : null;
         }
@@ -1397,20 +1390,20 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
     concat(schema) {
 
-        Hoek.assert(schema instanceof internals.Any, &#x27;Invalid schema object&#x27;);
-        Hoek.assert(this._type === &#x27;any&#x27; || schema._type === &#x27;any&#x27; || schema._type === this._type, &#x27;Cannot merge type&#x27;, this._type
-, &#x27;with another type:&#x27;, schema._type);
+        Hoek.assert(schema instanceof internals.Any, 'Invalid schema object');
+        Hoek.assert(this._type === 'any' || schema._type === 'any' || schema._type === this._type, 'Cannot merge type', this._type
+, 'with another type:', schema._type);
 
         let obj = this.clone();
 
-        if (this._type === &#x27;any&#x27; &#x26;&#x26; schema._type !== &#x27;any&#x27;) {
+        if (this._type === 'any' &amp;&amp; schema._type !== 'any') {
 
-            // Reset values as if we were &#x22;this&#x22;
+            // Reset values as if we were "this"
             const tmpObj = schema.clone();
-            const keysToRestore = [&#x27;_settings&#x27;, &#x27;_valids&#x27;, &#x27;_invalids&#x27;, &#x27;_tests&#x27;, &#x27;_refs&#x27;, &#x27;_flags&#x27;, &#x27;_description&#x27;, &#x27;_unit&#x27;,
-                &#x27;_notes&#x27;, &#x27;_tags&#x27;, &#x27;_examples&#x27;, &#x27;_meta&#x27;, &#x27;_inner&#x27;];
+            const keysToRestore = ['_settings', '_valids', '_invalids', '_tests', '_refs', '_flags', '_description', '_unit',
+                '_notes', '_tags', '_examples', '_meta', '_inner'];
 
-            for (let i = 0; i &#x3c; keysToRestore.length; ++i) {
+            for (let i = 0; i &lt; keysToRestore.length; ++i) {
                 tmpObj[keysToRestore[i]] = obj[keysToRestore[i]];
             }
 
@@ -1452,10 +1445,10 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
     const obj = this.clone();
     const values = Hoek.flatten(Array.prototype.slice.call(arguments));
-    for (let i = 0; i &#x3c; values.length; ++i) {
+    for (let i = 0; i &lt; values.length; ++i) {
         value = values[i];
 
-        Hoek.assert(value !== undefined, &#x27;Cannot call allow/valid/invalid with undefined&#x27;);
+        Hoek.assert(value !== undefined, 'Cannot call allow/valid/invalid with undefined');
         obj._valids.remove(value);
         obj._invalids.add(value, this._refs);
     }
@@ -1494,12 +1487,12 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
     <ul>
     <li>description and source-code<pre class="apidocCodePre">required() {
 
-    if (this._flags.presence === &#x27;required&#x27;) {
+    if (this._flags.presence === 'required') {
         return this;
     }
 
     const obj = this.clone();
-    obj._flags.presence = &#x27;required&#x27;;
+    obj._flags.presence = 'required';
     return obj;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -1518,10 +1511,10 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
     const obj = this.clone();
     const values = Hoek.flatten(Array.prototype.slice.call(arguments));
-    for (let i = 0; i &#x3c; values.length; ++i) {
+    for (let i = 0; i &lt; values.length; ++i) {
         value = values[i];
 
-        Hoek.assert(value !== undefined, &#x27;Cannot call allow/valid/invalid with undefined&#x27;);
+        Hoek.assert(value !== undefined, 'Cannot call allow/valid/invalid with undefined');
         obj._valids.remove(value);
         obj._invalids.add(value, this._refs);
     }
@@ -1552,11 +1545,11 @@ exports.options = Joi.object({
     convert: Joi.boolean(),
     allowUnknown: Joi.boolean(),
     skipFunctions: Joi.boolean(),
-    stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or(&#x27;arrays&#x27;, &#x27;objects
-&#x27;)],
+    stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or('arrays', 'objects
+')],
     language: Joi.object(),
-    presence: Joi.string().<span class="apidocCodeKeywordSpan">only</span>(&#x27;required&#x27;, &#x27;optional&#x27;, &#x27;forbidden
-&#x27;, &#x27;ignore&#x27;),
+    presence: Joi.string().<span class="apidocCodeKeywordSpan">only</span>('required', 'optional', 'forbidden
+', 'ignore'),
     raw: Joi.boolean(),
     context: Joi.object(),
     strip: Joi.boolean(),
@@ -1585,9 +1578,9 @@ exports.options = Joi.object({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
         const il = this._inner.matches.length;
-        const baseType = this._settings &#x26;&#x26; this._settings.baseType;
+        const baseType = this._settings &amp;&amp; this._settings.baseType;
 
-        for (let i = 0; i &#x3c; il; ++i) {
+        for (let i = 0; i &lt; il; ++i) {
             const item = this._inner.matches[i];
             const schema = item.schema;
             if (!schema) {
@@ -1598,7 +1591,7 @@ if (failed) {
     if (item.otherwise) {
         return item.otherwise._validate(value, state, options);
     }
-    else if (baseType &#x26;&#x26; i  === (il - 1)) {
+    else if (baseType &amp;&amp; i  === (il - 1)) {
         return baseType._validate(value, state, options);
 ...</pre></li>
     </ul>
@@ -1614,11 +1607,11 @@ if (failed) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">schema = function (config) {
 
-    internals.any = internals.any || new (require(&#x27;./any&#x27;))();
-    internals.alt = internals.alt || require(&#x27;./alternatives&#x27;);
-    internals.object = internals.object || require(&#x27;./object&#x27;);
+    internals.any = internals.any || new (require('./any'))();
+    internals.alt = internals.alt || require('./alternatives');
+    internals.object = internals.object || require('./object');
 
-    if (config !== undefined &#x26;&#x26; config !== null &#x26;&#x26; typeof config === &#x27;object&#x27;) {
+    if (config !== undefined &amp;&amp; config !== null &amp;&amp; typeof config === 'object') {
 
         if (config.isJoi) {
             return config;
@@ -1639,15 +1632,15 @@ if (failed) {
         return internals.object.keys(config);
     }
 
-    if (typeof config === &#x27;string&#x27;) {
+    if (typeof config === 'string') {
         return internals.string.valid(config);
     }
 
-    if (typeof config === &#x27;number&#x27;) {
+    if (typeof config === 'number') {
         return internals.number.valid(config);
     }
 
-    if (typeof config === &#x27;boolean&#x27;) {
+    if (typeof config === 'boolean') {
         return internals.boolean.valid(config);
     }
 
@@ -1655,18 +1648,18 @@ if (failed) {
         return internals.any.valid(config);
     }
 
-    Hoek.assert(config === null, &#x27;Invalid schema content:&#x27;, config);
+    Hoek.assert(config === null, 'Invalid schema content:', config);
 
     return internals.any.valid(null);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 const schemas = Hoek.flatten(Array.prototype.slice.call(arguments));
-Hoek.assert(schemas.length, &#x27;Cannot add other alternatives without at least one schema&#x27;);
+Hoek.assert(schemas.length, 'Cannot add other alternatives without at least one schema');
 
 const obj = this.clone();
 
-for (let i = 0; i &#x3c; schemas.length; ++i) {
+for (let i = 0; i &lt; schemas.length; ++i) {
     const cast = Cast.<span class="apidocCodeKeywordSpan">schema</span>(schemas[i]);
     if (cast._refs.length) {
         obj._refs = obj._refs.concat(cast._refs);
@@ -1724,14 +1717,14 @@ return obj;
         if (this.flags.label) {
             this.context.key = this.flags.label;
         }
-        else if (this.context.key === &#x27;&#x27; || this.context.key === null) {
+        else if (this.context.key === '' || this.context.key === null) {
             this.context.key = localized.root || Language.errors.root;
         }
 
         format = format || Hoek.reach(localized, this.type) || Hoek.reach(Language.errors, this.type);
 
-        let wrapArrays = Hoek.reach(localized, &#x27;messages.wrapArrays&#x27;);
-        if (typeof wrapArrays !== &#x27;boolean&#x27;) {
+        let wrapArrays = Hoek.reach(localized, 'messages.wrapArrays');
+        if (typeof wrapArrays !== 'boolean') {
             wrapArrays = Language.errors.messages.wrapArrays;
         }
 
@@ -1744,17 +1737,17 @@ return obj;
         }
 
         const hasKey = /\{\{\!?key\}\}/.test(format);
-        const skipKey = format.length &#x3e; 2 &#x26;&#x26; format[0] === &#x27;!&#x27; &#x26;&#x26; format[1] === &#x27;!&#x27;;
+        const skipKey = format.length &gt; 2 &amp;&amp; format[0] === '!' &amp;&amp; format[1] === '!';
 
         if (skipKey) {
             format = format.slice(2);
         }
 
-        if (!hasKey &#x26;&#x26; !skipKey) {
-            format = (Hoek.reach(localized, &#x27;key&#x27;) || Hoek.reach(Language.errors, &#x27;key&#x27;)) + format;
+        if (!hasKey &amp;&amp; !skipKey) {
+            format = (Hoek.reach(localized, 'key') || Hoek.reach(Language.errors, 'key')) + format;
         }
 
-        return format.replace(/\{\{(\!?)([^}]+)\}\}/g, ($0, isSecure, name) =&#x3e; {
+        return format.replace(/\{\{(\!?)([^}]+)\}\}/g, ($0, isSecure, name) =&gt; {
 
             const value = Hoek.reach(this.context, name);
             const normalized = internals.stringify(value, wrapArrays);
@@ -1830,31 +1823,31 @@ createOverrideError(type, context, state, options, message, template) {
 
     // Construct error
 
-    let message = &#x27;&#x27;;
+    let message = '';
     const details = [];
 
     const processErrors = function (localErrors, parent) {
 
-        for (let i = 0; i &#x3c; localErrors.length; ++i) {
+        for (let i = 0; i &lt; localErrors.length; ++i) {
             const item = localErrors[i];
 
             if (item instanceof Error) {
                 return item;
             }
 
-            if (item.flags.error &#x26;&#x26; typeof item.flags.error !== &#x27;function&#x27;) {
+            if (item.flags.error &amp;&amp; typeof item.flags.error !== 'function') {
                 return item.flags.error;
             }
 
             let itemMessage;
             if (parent === undefined) {
                 itemMessage = item.toString();
-                message = message + (message ? &#x27;. &#x27; : &#x27;&#x27;) + itemMessage;
+                message = message + (message ? '. ' : '') + itemMessage;
             }
 
-            // Do not push intermediate errors, we&#x27;re only interested in leafs
+            // Do not push intermediate errors, we're only interested in leafs
 
-            if (item.context.reason &#x26;&#x26; item.context.reason.length) {
+            if (item.context.reason &amp;&amp; item.context.reason.length) {
                 const override = processErrors(item.context.reason, item.path);
                 if (override) {
                     return override;
@@ -1878,7 +1871,7 @@ createOverrideError(type, context, state, options, message, template) {
 
     const error = new Error(message);
     error.isJoi = true;
-    error.name = &#x27;ValidationError&#x27;;
+    error.name = 'ValidationError';
     error.details = details;
     error._object = object;
     error.annotate = internals.annotate;
@@ -1890,9 +1883,9 @@ createOverrideError(type, context, state, options, message, template) {
 
 example(value) {
 
-    Hoek.assert(arguments.length, &#x27;Missing example&#x27;);
+    Hoek.assert(arguments.length, 'Missing example');
     const result = this._validate(value, null, internals.defaults);
-    Hoek.assert(!result.errors, &#x27;Bad example:&#x27;, result.errors &#x26;&#x26; Errors.<span class="apidocCodeKeywordSpan">
+    Hoek.assert(!result.errors, 'Bad example:', result.errors &amp;&amp; Errors.<span class="apidocCodeKeywordSpan">
 process</span>(result.errors, value));
 
     const obj = this.clone();
@@ -1920,7 +1913,7 @@ unit(name) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">create = function (key, options) {
 
-    Hoek.assert(typeof key === &#x27;string&#x27;, &#x27;Invalid reference key:&#x27;, key);
+    Hoek.assert(typeof key === 'string', 'Invalid reference key:', key);
 
     const settings = Hoek.clone(options);         // options can be reused and modified
 
@@ -1929,16 +1922,16 @@ unit(name) {
         return Hoek.reach(ref.isContext ? validationOptions.context : value, ref.key, settings);
     };
 
-    ref.isContext = (key[0] === ((settings &#x26;&#x26; settings.contextPrefix) || &#x27;$&#x27;));
+    ref.isContext = (key[0] === ((settings &amp;&amp; settings.contextPrefix) || '$'));
     ref.key = (ref.isContext ? key.slice(1) : key);
-    ref.path = ref.key.split((settings &#x26;&#x26; settings.separator) || &#x27;.&#x27;);
+    ref.path = ref.key.split((settings &amp;&amp; settings.separator) || '.');
     ref.depth = ref.path.length;
     ref.root = ref.path[0];
     ref.isJoi = true;
 
     ref.toString = function () {
 
-        return (ref.isContext ? &#x27;context:&#x27; : &#x27;ref:&#x27;) + ref.key;
+        return (ref.isContext ? 'context:' : 'ref:') + ref.key;
     };
 
     return ref;
@@ -1972,7 +1965,7 @@ createOverrideError(type, context, state, options, message, template) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">isRef = function (ref) {
 
-    return typeof ref === &#x27;function&#x27; &#x26;&#x26; ref.isJoi;
+    return typeof ref === 'function' &amp;&amp; ref.isJoi;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 }
@@ -1982,13 +1975,13 @@ return obj;
 
     when(ref, options) {
 
-Hoek.assert(Ref.<span class="apidocCodeKeywordSpan">isRef</span>(ref) || typeof ref === &#x27;string&#x27;, &#x27;Invalid reference
-:&#x27;, ref);
-Hoek.assert(options, &#x27;Missing options&#x27;);
-Hoek.assert(typeof options === &#x27;object&#x27;, &#x27;Invalid options&#x27;);
-Hoek.assert(options.hasOwnProperty(&#x27;is&#x27;), &#x27;Missing &#x22;is&#x22; directive&#x27;);
-Hoek.assert(options.then !== undefined || options.otherwise !== undefined, &#x27;options must have at least one of &#x22;then&#x22
-; or &#x22;otherwise&#x22;&#x27;);
+Hoek.assert(Ref.<span class="apidocCodeKeywordSpan">isRef</span>(ref) || typeof ref === 'string', 'Invalid reference
+:', ref);
+Hoek.assert(options, 'Missing options');
+Hoek.assert(typeof options === 'object', 'Invalid options');
+Hoek.assert(options.hasOwnProperty('is'), 'Missing "is" directive');
+Hoek.assert(options.then !== undefined || options.otherwise !== undefined, 'options must have at least one of "then"
+; or "otherwise"');
 
 const obj = this.clone();
 let is = Cast.schema(options.is);
@@ -2006,7 +1999,7 @@ let is = Cast.schema(options.is);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">push = function (array, ref) {
 
-    if (exports.isRef(ref) &#x26;&#x26;
+    if (exports.isRef(ref) &amp;&amp;
         !ref.isContext) {
 
         array.push(ref.root);
@@ -2015,7 +2008,7 @@ let is = Cast.schema(options.is);
     <li>example usage<pre class="apidocCodePre">...
     const obj = this.clone();
 
-    for (let i = 0; i &#x3c; schemas.length; ++i) {
+    for (let i = 0; i &lt; schemas.length; ++i) {
         const cast = Cast.schema(schemas[i]);
         if (cast._refs.length) {
             obj._refs = obj._refs.concat(cast._refs);
@@ -2039,3 +2032,4 @@ when(ref, options) {
     ]
 </div>
 </div>
+</body></html>
