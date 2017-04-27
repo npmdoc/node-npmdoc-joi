@@ -1,6 +1,6 @@
 # npmdoc-joi
 
-#### api documentation for  [joi (v10.4.1)](https://github.com/hapijs/joi)  [![npm package](https://img.shields.io/npm/v/npmdoc-joi.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-joi) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-joi.svg)](https://travis-ci.org/npmdoc/node-npmdoc-joi)
+#### basic api documentation for  [joi (v10.4.1)](https://github.com/hapijs/joi)  [![npm package](https://img.shields.io/npm/v/npmdoc-joi.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-joi) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-joi.svg)](https://travis-ci.org/npmdoc/node-npmdoc-joi)
 
 #### Object schema validation
 
@@ -80,7 +80,8 @@
         "toc": "hapitoc",
         "version": "npm run toc && git add API.md README.md"
     },
-    "version": "10.4.1"
+    "version": "10.4.1",
+    "bin": {}
 }
 ```
 
