@@ -375,6 +375,18 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>ip</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.</span>uri</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">joi.</span>_type</span>
 
         </li>
@@ -508,6 +520,31 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.ip">module joi.ip</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.ip.createIpRegex">
+            function <span class="apidocSignatureSpan">joi.ip.</span>createIpRegex
+            <span class="apidocSignatureSpan">(versions, cidr)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.ip.</span>cidrs</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">joi.ip.</span>versions</span>
+
+        </li>
+
+    </ol></li>
+
     <li class="apidocModuleLi"><a href="#apidoc.module.joi.ref">module joi.ref</a><ol>
 
         <li>
@@ -533,6 +570,19 @@
             <a class="apidocElementLiA" href="#apidoc.element.joi.ref.push">
             function <span class="apidocSignatureSpan">joi.ref.</span>push
             <span class="apidocSignatureSpan">(array, ref)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.joi.uri">module joi.uri</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.joi.uri.createUriRegex">
+            function <span class="apidocSignatureSpan">joi.uri.</span>createUriRegex
+            <span class="apidocSignatureSpan">(optionalScheme, allowRelative, relativeOnly)</span>
             </a>
 
         </li>
@@ -592,7 +642,23 @@
 
     return any;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+internals.root = function () {
+
+    const any = new Any();
+
+    const root = any.clone();
+    root.any = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">any</span>() does not allow arguments.&#x27;);
+
+return any;
+    };
+
+    root.alternatives = root.alt = function () {
+
+return arguments.length ? internals.alternatives.try.apply(internals.alternatives, arguments) : internals.alternatives;
+...</pre></li>
     </ul>
 
 
@@ -610,7 +676,23 @@
 
     return internals.array;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    root.alternatives = root.alt = function () {
+
+return arguments.length ? internals.alternatives.try.apply(internals.alternatives, arguments) : internals.alternatives;
+    };
+
+    root.array = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">array</span>() does not allow arguments.&#x27;);
+
+return internals.array;
+    };
+
+    root.boolean = root.bool = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.boolean() does not allow arguments.&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -679,7 +761,23 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
 
     return result.value;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+    throw err;
+}
+    };
+
+    root.assert = function (value, schema, message) {
+
+root.<span class="apidocCodeKeywordSpan">attempt</span>(value, schema, message);
+    };
+
+    root.attempt = function (value, schema, message) {
+
+const result = root.validate(value, schema);
+const error = result.error;
+if (error) {
+...</pre></li>
     </ul>
 
 
@@ -697,7 +795,24 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
 
     return internals.binary;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Hoek.assert(arguments.length === 0, &#x27;Joi.boolean() does not allow arguments.&#x27;);
+
+return internals.boolean;
+    };
+
+    root.binary = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">binary</span>() does not allow arguments.&#x27
+;);
+
+return internals.binary;
+    };
+
+    root.date = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.date() does not allow arguments.&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -734,22 +849,22 @@ for (let i = 0; i &#x3c; schemas.length; ++i) {
     return internals.boolean;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
+Hoek.assert(arguments.length === 0, &#x27;Joi.array() does not allow arguments.&#x27;);
 
+return internals.array;
+    };
 
-// Declare internals
+    root.boolean = root.bool = function () {
 
-const internals = {};
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">boolean</span>() does not allow arguments.&#x27
+;);
 
-exports.options = Joi.object({
-abortEarly: Joi.<span class="apidocCodeKeywordSpan">boolean</span>(),
-convert: Joi.boolean(),
-allowUnknown: Joi.boolean(),
-skipFunctions: Joi.boolean(),
-stripUnknown: [Joi.boolean(), Joi.object({ arrays: Joi.boolean(), objects: Joi.boolean() }).or(&#x27;arrays&#x27;, &#x27;objects
-&#x27;)],
-language: Joi.object(),
-presence: Joi.string().only(&#x27;required&#x27;, &#x27;optional&#x27;, &#x27;forbidden&#x27;, &#x27;ignore&#x27;),
-raw: Joi.boolean(),
+return internals.boolean;
+    };
+
+    root.binary = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.binary() does not allow arguments.&#x27;);
 ...</pre></li>
     </ul>
 
@@ -774,7 +889,23 @@ raw: Joi.boolean(),
         throw err;
     }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+const count = arguments.length - (callback ? 1 : 0);
+if (count === 1) {
+    return any.validate(value, callback);
+}
+
+const options = count === 3 ? arguments[2] : {};
+const schema = root.<span class="apidocCodeKeywordSpan">compile</span>(arguments[1]);
+
+return schema._validateWithOptions(value, options, callback);
+    };
+
+    root.describe = function () {
+
+const schema = arguments.length ? root.compile(arguments[0]) : any;
+...</pre></li>
     </ul>
 
 
@@ -792,7 +923,23 @@ raw: Joi.boolean(),
 
     return internals.date;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Hoek.assert(arguments.length === 0, &#x27;Joi.binary() does not allow arguments.&#x27;);
+
+return internals.binary;
+    };
+
+    root.date = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">date</span>() does not allow arguments.&#x27;);
+
+return internals.date;
+    };
+
+    root.func = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.func() does not allow arguments.&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -974,7 +1121,23 @@ const when = {
 
     return internals.object._func();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Hoek.assert(arguments.length === 0, &#x27;Joi.date() does not allow arguments.&#x27;);
+
+return internals.date;
+    };
+
+    root.func = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">func</span>() does not allow arguments.&#x27;);
+
+return internals.object._func();
+    };
+
+    root.number = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.number() does not allow arguments.&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -1293,6 +1456,10 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
 
 
 
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -1429,7 +1596,23 @@ Joi.validate({ username: &#x27;abc&#x27;, birthyear: 1994 }, schema, function (e
         obj._notes = obj._notes.concat(schema._notes);
         obj._tags = obj._tags.concat(schema._tags);
         obj._examples = obj._exa ...</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+internals.root = function () {
+
+    const any = new Any();
+
+    const root = any.clone();
+    root.any = function () {
+
+Hoek.assert(arguments.length === 0, &#x27;Joi.<span class="apidocCodeKeywordSpan">any</span>() does not allow arguments.&#x27;);
+
+return any;
+    };
+
+    root.alternatives = root.alt = function () {
+
+return arguments.length ? internals.alternatives.try.apply(internals.alternatives, arguments) : internals.alternatives;
+...</pre></li>
     </ul>
 
 
@@ -1908,6 +2091,57 @@ unit(name) {
 </div>
 
 <div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.ip" id="apidoc.module.joi.ip">module joi.ip</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.joi.ip.createIpRegex" id="apidoc.element.joi.ip.createIpRegex">
+        function <span class="apidocSignatureSpan">joi.ip.</span>createIpRegex
+        <span class="apidocSignatureSpan">(versions, cidr)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createIpRegex = function (versions, cidr) {
+
+    let regex;
+    for (let i = 0; i &#x3c; versions.length; ++i) {
+        const version = versions[i];
+        if (!regex) {
+            regex = &#x27;^(?:&#x27; + internals.Ip.versions[version];
+        }
+        regex = regex + &#x27;|&#x27; + internals.Ip.versions[version];
+    }
+
+    return new RegExp(regex + &#x27;)&#x27; + internals.Ip.cidrs[cidr] + &#x27;$&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+const Uri = require(&#x27;./string/uri&#x27;);
+const Ip = require(&#x27;./string/ip&#x27;);
+
+// Declare internals
+
+const internals = {
+    uriRegex: Uri.createUriRegex(),
+    ipRegex: Ip.<span class="apidocCodeKeywordSpan">createIpRegex</span>([&#x27;ipv4&#x27;, &#x27;ipv6&#x27;, &#x27;ipvfuture&#x27
+;], &#x27;optional&#x27;)
+};
+
+internals.String = class extends Any {
+
+    constructor() {
+
+super();
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.joi.ref" id="apidoc.module.joi.ref">module joi.ref</a></h1>
 
 
@@ -2027,6 +2261,68 @@ let is = Cast.schema(options.is);
 }
 
 when(ref, options) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.joi.uri" id="apidoc.module.joi.uri">module joi.uri</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.joi.uri.createUriRegex" id="apidoc.element.joi.uri.createUriRegex">
+        function <span class="apidocSignatureSpan">joi.uri.</span>createUriRegex
+        <span class="apidocSignatureSpan">(optionalScheme, allowRelative, relativeOnly)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createUriRegex = function (optionalScheme, allowRelative, relativeOnly) {
+
+    let scheme = RFC3986.scheme;
+    let prefix;
+
+    if (relativeOnly) {
+        prefix = &#x27;(?:&#x27; + RFC3986.relativeRef + &#x27;)&#x27;;
+    }
+    else {
+        // If we were passed a scheme, use it instead of the generic one
+        if (optionalScheme) {
+
+            // Have to put this in a non-capturing group to handle the OR statements
+            scheme = &#x27;(?:&#x27; + optionalScheme + &#x27;)&#x27;;
+        }
+
+        const withScheme = &#x27;(?:&#x27; + scheme + &#x27;:&#x27; + RFC3986.hierPart + &#x27;)&#x27;;
+
+        prefix = allowRelative ? &#x27;(?:&#x27; + withScheme + &#x27;|&#x27; + RFC3986.relativeRef + &#x27;)&#x27; : withScheme;
+    }
+
+<span class="apidocCodeCommentSpan">    /**
+     * URI = scheme &#x22;:&#x22; hier-part [ &#x22;?&#x22; query ] [ &#x22;#&#x22; fragment ]
+     *
+     * OR
+     *
+     * relative-ref = relative-part [ &#x22;?&#x22; query ] [ &#x22;#&#x22; fragment ]
+     */
+</span>    return new RegExp(&#x27;^&#x27; + prefix + &#x27;(?:\\?&#x27; + RFC3986.query + &#x27;)?&#x27; + &#x27;(?:#&#x27; + RFC3986.fragment + &#x27;)?$&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+const JoiDate = require(&#x27;./date&#x27;);
+const Uri = require(&#x27;./string/uri&#x27;);
+const Ip = require(&#x27;./string/ip&#x27;);
+
+// Declare internals
+
+const internals = {
+uriRegex: Uri.<span class="apidocCodeKeywordSpan">createUriRegex</span>(),
+ipRegex: Ip.createIpRegex([&#x27;ipv4&#x27;, &#x27;ipv6&#x27;, &#x27;ipvfuture&#x27;], &#x27;optional&#x27;)
+};
+
+internals.String = class extends Any {
+
+constructor() {
 ...</pre></li>
     </ul>
 
